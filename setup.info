@@ -1,0 +1,11 @@
+# Install Angular CLI
+npm install -g @angular/cli
+
+# Create the app
+ng new practice-app
+
+# Commitlint
+npm install --save-dev @commitlint/cli @commitlint/config-conventional husky
+
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'
+
