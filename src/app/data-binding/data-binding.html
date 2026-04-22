@@ -1,0 +1,21 @@
+<div>
+  <h3>This is data binding tasks</h3>
+  <h5>One-Way Binding</h5>
+  <p class="count-display">Interpolation test: {{ userCount }}</p>
+  <div class="button-container">
+    <button class="increment-btn" (click)="incrementCount()" [disabled]="isLoading">
+      Increment
+    </button>
+    <button class="toggle-loader-btn" (click)="toggleIsLoading()">
+      Toggle isLoading state for Property Binding
+    </button>
+    <button class="refresh-btn" (click)="refreshUsers()">
+      Refresh users for Event Binding Test
+    </button>
+  </div>
+
+  <h5>Two-Way Binding - Check the console</h5>
+  <label id="searchTerm"
+    ><input [(ngModel)]="searchTerm" (ngModelChange)="onSearchInput()" placeholder="Enter..."
+  /></label>
+</div>

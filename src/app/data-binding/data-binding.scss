@@ -1,0 +1,71 @@
+@use '../../styles/mixins' as *;
+
+.count-display {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+%btn-base {
+  padding: 0.4rem 1rem;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+
+  @include active-button-effect(0.2s);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.increment-btn {
+  @extend %btn-base;
+  background-color: #1976d2;
+
+  &:hover:not(:disabled) {
+    background-color: #1565c0;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #0d47a1;
+  }
+}
+
+.toggle-loader-btn {
+  @extend %btn-base;
+  background-color: #f57c00;
+
+  &:hover {
+    background-color: #e65100;
+  }
+
+  &:active {
+    background-color: #bf360c;
+  }
+}
+
+.refresh-btn {
+  @extend %btn-base;
+  background-color: #388e3c;
+
+  &:hover {
+    background-color: #2e7d32;
+  }
+
+  &:active {
+    background-color: #1b5e20;
+  }
+}

@@ -1,0 +1,10 @@
+<main>
+  <h5>This is Angular practice</h5>
+  <nav>
+    @for (task of tasks; track task.path) {
+      <li>
+        <a [routerLink]="task.path">{{ task.name }}</a>
+      </li>
+    }
+  </nav>
+</main>

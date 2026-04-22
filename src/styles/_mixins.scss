@@ -1,0 +1,7 @@
+@mixin active-button-effect($duration: 0.3s) {
+  transition: transform $duration ease-out;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
