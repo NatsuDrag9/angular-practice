@@ -1,0 +1,22 @@
+@use '../../styles/mixins' as *;
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+  }
+
+  &__button {
+    @include active-button-effect(0.15s);
+    padding: 10px 15px;
+    height: 40px;
+  }
+}

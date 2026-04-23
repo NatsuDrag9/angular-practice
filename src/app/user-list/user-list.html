@@ -1,0 +1,30 @@
+<div>
+  <h3>Users</h3>
+  <ul>
+    @for (user of users; track user.id) {
+      <li>
+        <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+      </li>
+    }
+  </ul>
+
+  <div>
+    <h5>Delete User</h5>
+    <label for="deleteId">User ID</label>
+    <input id="deleteId" type="number" [(ngModel)]="deleteId" placeholder="Enter ID" />
+    <button (click)="onDelete()">Delete</button>
+  </div>
+
+  <div>
+    <h5>Update User</h5>
+    <label for="updateId">User ID</label>
+    <input id="updateId" type="number" [(ngModel)]="updateId" placeholder="Enter ID" />
+    <label for="updateName">Name</label>
+    <input id="updateName" [(ngModel)]="updateName" placeholder="New name" />
+    <label for="updateEmail">Email</label>
+    <input id="updateEmail" [(ngModel)]="updateEmail" placeholder="New email" />
+    <label for="updateRole">Role</label>
+    <input id="updateRole" [(ngModel)]="updateRole" placeholder="New role" />
+    <button (click)="onUpdate()">Update</button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="auth">
+  <h3 class="auth__title">Welcome to Auth</h3>
+
+  <section class="auth__section">
+    <h6 class="auth__sub-title">Click the button to see authenticated content</h6>
+    <button
+      type="button"
+      (click)="onLoginClick()"
+      class="auth__button login"
+      [disabled]="showAuthenticatedContent"
+    >
+      Log me in
+    </button>
+
+    @if (showAuthenticatedContent) {
+      <p class="auth__content">You are authenticated! Here are your users:</p>
+      <ul>
+        @for (user of users; track user.id) {
+          <li>
+            <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+          </li>
+        }
+      </ul>
+    }
+
+    <button
+      type="button"
+      (click)="onLogoutClick()"
+      class="auth__button logout"
+      [disabled]="!showAuthenticatedContent"
+    >
+      Log me out
+    </button>
+  </section>
+</div>

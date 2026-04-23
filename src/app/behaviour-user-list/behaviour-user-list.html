@@ -1,0 +1,69 @@
+<div>
+  <!-- 3B: manual subscription via takeUntil in ngOnInit -->
+  <h3>Users — takeUntil subscription (3B/3C)</h3>
+  <ul>
+    @for (user of users; track user.id) {
+      <li>
+        <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+      </li>
+    }
+  </ul>
+
+  <hr />
+
+  <!-- 3D: async pipe — no manual subscription or ngOnDestroy needed -->
+  <h3>Users — async pipe (3D)</h3>
+  @if (users$ | async; as asyncUsers) {
+    <ul>
+      @for (user of asyncUsers; track user.id) {
+        <li>
+          <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+        </li>
+      }
+    </ul>
+  }
+
+  <hr />
+
+  <!-- 3E: search with RxJS -->
+  <h3>Search Users (3E)</h3>
+  <input [(ngModel)]="searchTerm" placeholder="Search by name or email" />
+  <button (click)="onSearch()">Search</button>
+
+  @if (searchResults$ | async; as results) {
+    <ul>
+      @for (user of results; track user.id) {
+        <li>
+          <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+        </li>
+      } @empty {
+        <li>No results found.</li>
+      }
+    </ul>
+  }
+
+  <hr />
+
+  <section>
+    <h4>Add User</h4>
+    <input [(ngModel)]="newName" placeholder="Name" />
+    <input [(ngModel)]="newEmail" placeholder="Email" />
+    <input [(ngModel)]="newRole" placeholder="Role" />
+    <button (click)="onAdd()">Add</button>
+  </section>
+
+  <section>
+    <h4>Delete User</h4>
+    <input type="number" [(ngModel)]="deleteId" placeholder="User ID" />
+    <button (click)="onDelete()">Delete</button>
+  </section>
+
+  <section>
+    <h4>Update User</h4>
+    <input type="number" [(ngModel)]="updateId" placeholder="User ID" />
+    <input [(ngModel)]="updateName" placeholder="New name (optional)" />
+    <input [(ngModel)]="updateEmail" placeholder="New email (optional)" />
+    <input [(ngModel)]="updateRole" placeholder="New role (optional)" />
+    <button (click)="onUpdate()">Update</button>
+  </section>
+</div>
