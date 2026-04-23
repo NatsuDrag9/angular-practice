@@ -1,0 +1,99 @@
+<div class="rxjs-operators">
+  <h3 class="rxjs-operators__title">RxJS Operators</h3>
+
+  <section class="rxjs-operators__section">
+    <!-- 4A: users loaded via subscription in ngOnInit -->
+    <h4>All Users</h4>
+    <ul>
+      @for (user of users; track user.id) {
+        <li>{{ user.name }} — {{ user.email }} ({{ user.role }})</li>
+      }
+    </ul>
+
+    <button (click)="mapUsers()">Transform (map → names)</button>
+
+    @if (userNames.length > 0) {
+      <h4>User Names (mapped)</h4>
+      <ul>
+        @for (name of userNames; track name) {
+          <li>{{ name }}</li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section class="rxjs-operators__section">
+    <!-- 4B: filter array to admins, then map to names -->
+    <h4>Filter Users</h4>
+
+    <button (click)="filterUsers()">Filter (admin) + map → names</button>
+
+    @if (adminNames.length > 0) {
+      <h4>Admin Names (filter + map)</h4>
+      <ul>
+        @for (name of adminNames; track name) {
+          <li>{{ name }}</li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section class="rxjs-operators__section">
+    <!-- 4C: switchMap — each keystroke emits into searchTerm$, switchMap cancels the previous searchUsers() call -->
+    <h4>Search with switchMap (4C)</h4>
+    <input
+      [(ngModel)]="searchTerm"
+      (input)="onSearchInput()"
+      placeholder="Type to search users..."
+    />
+
+    @if (switchMapResults.length > 0) {
+      <ul>
+        @for (user of switchMapResults; track user.id) {
+          <li>{{ user.name }} — {{ user.email }} ({{ user.role }})</li>
+        }
+      </ul>
+    } @else if (searchTerm.length > 0) {
+      <p>No results found.</p>
+    }
+  </section>
+
+  <section class="rxjs-operators__section">
+    <!-- 4D: catchError intercepts errors and returns a fallback observable -->
+    <h4>Fake API with catchError (4D)</h4>
+    <label> <input type="checkbox" [(ngModel)]="shouldFail" /> Simulate failure </label>
+    <button (click)="fetchUsers()">Fetch</button>
+
+    @if (apiError) {
+      <p>Error: {{ apiError }}</p>
+    }
+
+    @if (apiResults.length > 0) {
+      <ul>
+        @for (user of apiResults; track user.id) {
+          <li>{{ user.name }} — {{ user.email }} ({{ user.role }})</li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section class="rxjs-operators__section">
+    <!-- 4E: debounceTime(300) + switchMap — waits 300ms after last keystroke before searching -->
+    <h4>Debounced Search (4E)</h4>
+    <input
+      [(ngModel)]="debouncedSearchTerm"
+      (input)="onDebouncedSearchInput()"
+      placeholder="Type to search (debounced 300ms)..."
+    />
+
+    @if (debouncedResults.length > 0) {
+      <ul>
+        @for (user of debouncedResults; track user.id) {
+          <li>{{ user.name }} — {{ user.email }} ({{ user.role }})</li>
+        }
+      </ul>
+    } @else {
+      <p>No results found.</p>
+    }
+  </section>
+</div>

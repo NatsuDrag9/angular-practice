@@ -4,6 +4,7 @@ import { Home } from './home/home';
 import { UserList } from './user-list/user-list';
 import { Auth } from './auth/auth';
 import { BehaviourUserList } from './behaviour-user-list/behaviour-user.list';
+import { RxjsOperators } from './rxjs-operators/rxjs-operators';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'user-list', component: UserList },
   { path: 'auth', component: Auth },
   { path: 'behaviour-user-list', component: BehaviourUserList },
+  { path: 'rxjs-operators', component: RxjsOperators },
 ];
