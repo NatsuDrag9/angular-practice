@@ -508,29 +508,29 @@ For each question, create a small example in your app that demonstrates the conc
 
 ### Day 1 Checklist
 
-- [ ] Angular project created and running
-- [ ] Data binding (all 4 types) working in template
-- [ ] UserService created with methods
-- [ ] Service injected into component
-- [ ] Users displaying from service
-- [ ] BehaviorSubject in UserService
-- [ ] Async pipe displaying users
-- [ ] Memory leak prevention implemented
+- [x] Angular project created and running
+- [x] Data binding (all 4 types) working in template
+- [x] UserService created with methods
+- [x] Service injected into component
+- [x] Users displaying from service
+- [x] BehaviorSubject in UserService
+- [x] Async pipe displaying users
+- [x] Memory leak prevention implemented
 
 ### Day 2 Checklist
 
-- [ ] Routing set up with 4+ routes
-- [ ] Route parameters working (/user/:id)
-- [ ] Search with debounceTime and switchMap
-- [ ] Error handling with catchError
-- [ ] Basic form component created
+- [x] Routing set up with 4+ routes
+- [x] Route parameters working (/user/:id)
+- [x] Search with debounceTime and switchMap
+- [x] Error handling with catchError
+- [x] Basic form component created
 
 ### Day 3 Checklist
 
 - [ ] Reactive form validation complete
 - [ ] Create user form working
 - [ ] Edit user form working
-- [ ] AuthService created
+- [x] AuthService created
 - [ ] AuthGuard protecting routes
 - [ ] RoleGuard for admin routes
 - [ ] Login/logout UI complete

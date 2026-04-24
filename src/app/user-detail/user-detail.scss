@@ -1,0 +1,12 @@
+@use '../../styles/mixins' as *;
+
+.user-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
+  &__button {
+    @include active-button-effect(0.15s);
+  }
+}

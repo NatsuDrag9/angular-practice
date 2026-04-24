@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.html',
 })
 export class Home {
+  // 5A
   protected readonly tasks = [
     { name: 'Data Binding', path: '/data-binding' },
     { name: 'User List (Services)', path: '/user-list' },

@@ -1,0 +1,13 @@
+<div class="user-detail">
+  @if (user) {
+    <h3>User Detail</h3>
+    <p><strong>ID:</strong> {{ user.id }}</p>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+  } @else {
+    <p>User not found.</p>
+  }
+
+  <button (click)="goBack()" class="user-detail__button">← Back to List</button>
+</div>

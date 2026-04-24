@@ -1,9 +1,23 @@
-<div>
+<div class="user-list">
   <h3>Users</h3>
+
+  <!-- 5C: query param filter links — navigates to /user-list?role=... -->
+  <nav class="user-list__nav-links">
+    <a [routerLink]="['/user-list']">All</a>
+    <a [routerLink]="['/user-list']" [queryParams]="{ role: 'admin' }">Admins</a>
+    <a [routerLink]="['/user-list']" [queryParams]="{ role: 'editor' }">Editors</a>
+    <a [routerLink]="['/user-list']" [queryParams]="{ role: 'viewer' }">Viewers</a>
+  </nav>
+  @if (activeRole) {
+    <p>Showing: {{ activeRole }}</p>
+  }
+
   <ul>
     @for (user of users; track user.id) {
-      <li>
+      <li class="user-list__list-item">
         <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+        <!-- 5B: navigate to /user/:id -->
+        <a [routerLink]="['/user', user.id]">View Details</a>
       </li>
     }
   </ul>
