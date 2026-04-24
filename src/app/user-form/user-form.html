@@ -1,0 +1,58 @@
+<div class="user-form">
+  <h3>{{ isEditMode ? 'Edit User' : 'Create User' }}</h3>
+
+  @if (successMessage) {
+    <p class="user-form__success">{{ successMessage }}</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Name field -->
+    <div class="user-form__field">
+      <label for="name">Name</label>
+      <input id="name" formControlName="name" placeholder="Enter name" />
+      <!-- 6B: validation errors -->
+      @if (getControl('name').invalid && getControl('name').touched) {
+        @if (getControl('name').hasError('required')) {
+          <span class="user-form__error">Name is required.</span>
+        } @else if (getControl('name').hasError('minlength')) {
+          <span class="user-form__error">Name must be at least 3 characters.</span>
+        }
+      }
+    </div>
+
+    <!-- Email field -->
+    <div class="user-form__field">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" placeholder="Enter email" />
+      @if (getControl('email').invalid && getControl('email').touched) {
+        @if (getControl('email').hasError('required')) {
+          <span class="user-form__error">Email is required.</span>
+        } @else if (getControl('email').hasError('email')) {
+          <span class="user-form__error">Enter a valid email address.</span>
+        }
+      }
+    </div>
+
+    <!-- Role field -->
+    <div class="user-form__field">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role">
+        <option value="">-- Select role --</option>
+        <option value="admin">Admin</option>
+        <option value="editor">Editor</option>
+        <option value="viewer">Viewer</option>
+      </select>
+      @if (getControl('role').invalid && getControl('role').touched) {
+        <span class="user-form__error">Role is required.</span>
+      }
+    </div>
+
+    <!-- 6B: disable submit when form is invalid -->
+    <button type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? 'Update User' : 'Create User' }}
+    </button>
+
+    <button type="button" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

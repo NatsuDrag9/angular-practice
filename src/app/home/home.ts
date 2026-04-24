@@ -14,5 +14,6 @@ export class Home {
     { name: 'Authentication (Services)', path: '/auth' },
     { name: 'BehaviorSubject User List (Observables)', path: '/behaviour-user-list' },
     { name: 'RxJS Operators', path: '/rxjs-operators' },
+    { name: 'Create User (Reactive Forms)', path: '/create-user' },
   ];
 }

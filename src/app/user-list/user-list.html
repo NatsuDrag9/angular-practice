@@ -12,12 +12,17 @@
     <p>Showing: {{ activeRole }}</p>
   }
 
+  <!-- 6A: link to create new user -->
+  <a [routerLink]="['/create-user']">+ Create User</a>
+
   <ul>
     @for (user of users; track user.id) {
       <li class="user-list__list-item">
         <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
         <!-- 5B: navigate to /user/:id -->
         <a [routerLink]="['/user', user.id]">View Details</a>
+        <!-- 6D: navigate to edit form -->
+        <a [routerLink]="['/edit-user', user.id]">Edit</a>
       </li>
     }
   </ul>

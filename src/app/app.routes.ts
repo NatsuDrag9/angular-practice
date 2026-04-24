@@ -6,12 +6,15 @@ import { Auth } from './auth/auth';
 import { BehaviourUserList } from './behaviour-user-list/behaviour-user.list';
 import { RxjsOperators } from './rxjs-operators/rxjs-operators';
 import { UserDetail } from './user-detail/user-detail';
+import { UserForm } from './user-form/user-form';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'data-binding', component: DataBinding },
   { path: 'user-list', component: UserList },
   { path: 'user/:id', component: UserDetail },
+  { path: 'create-user', component: UserForm },
+  { path: 'edit-user/:id', component: UserForm },
   { path: 'auth', component: Auth },
   { path: 'behaviour-user-list', component: BehaviourUserList },
   { path: 'rxjs-operators', component: RxjsOperators },
