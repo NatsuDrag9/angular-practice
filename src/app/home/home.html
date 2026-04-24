@@ -1,5 +1,4 @@
 <main>
-  <!-- Task 5A -->
   <h5>This is Angular practice</h5>
   <nav>
     @for (task of tasks; track task.path) {
@@ -7,5 +6,15 @@
         <a [routerLink]="task.path">{{ task.name }}</a>
       </li>
     }
+    <li>
+      <button (click)="onUserListClick()">User List (BehaviorSubject / State) ▾</button>
+      @if (showUserListPrompt) {
+        <ul style="margin-top: 0.25rem; padding-left: 1rem; list-style: disc;">
+          @for (option of userListOptions; track option.path) {
+            <li><a [routerLink]="option.path">{{ option.name }}</a></li>
+          }
+        </ul>
+      }
+    </li>
   </nav>
 </main>

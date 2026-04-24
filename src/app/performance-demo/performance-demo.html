@@ -1,0 +1,32 @@
+<!-- 9A: expensive computation called in template — runs every change detection cycle -->
+<p style="color: #888; font-size: 0.85rem;">
+  Render count: <strong>{{ renderCount }}</strong> |
+  Last computation: <strong>{{ lastComputationMs }}ms</strong> |
+  Result (forces CD): <strong>{{ expensiveComputation() }}</strong>
+</p>
+
+<div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+  <button (click)="onAddUser()">Add User</button>
+  <button (click)="onUpdateFirst()">Update First User</button>
+  <button (click)="onToggleTrackBy()">
+    trackBy: <strong>{{ useTrackBy ? 'ON' : 'OFF' }}</strong>
+  </button>
+</div>
+
+<p style="font-size: 0.8rem; color: #555;">
+  Total users: {{ users.length }} |
+  Each row is an OnPush <code>user-row</code> component — it only re-renders when its @Input reference changes.
+</p>
+
+<!-- 9C: trackBy conditionally applied to demonstrate the difference -->
+<ul style="max-height: 400px; overflow-y: auto; padding: 0; list-style: none;">
+  @if (useTrackBy) {
+    @for (user of users; track trackById($index, user)) {
+      <user-row [user]="user" />
+    }
+  } @else {
+    @for (user of users; track user) {
+      <user-row [user]="user" />
+    }
+  }
+</ul>

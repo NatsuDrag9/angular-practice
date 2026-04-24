@@ -24,7 +24,7 @@ export class Auth {
     const success = this.authService.login(this.username, this.password);
     if (success) {
       this.errorMessage = null;
-      this.router.navigate(['/user-list']);
+      this.router.navigate(['/']);
     } else {
       this.errorMessage = 'Invalid username or password.';
     }

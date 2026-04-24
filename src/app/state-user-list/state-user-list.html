@@ -1,0 +1,71 @@
+<!-- 8C: loading spinner -->
+@if (loading$ | async) {
+  <p style="color: #888; font-style: italic;">Loading users...</p>
+}
+
+<!-- 8C: error banner with dismiss -->
+@if (error$ | async; as errorMsg) {
+  <div style="background: #fee; border: 1px solid #f88; padding: 0.5rem 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;">
+    <span style="color: red;">{{ errorMsg }}</span>
+    <button (click)="onDismissError()">Dismiss</button>
+  </div>
+}
+
+@if (!(loading$ | async)) {
+  <!-- 8B: users$ comes from StateService via BehaviourUserStateService -->
+  <h3>Users — StateService (8B)</h3>
+  @if (users$ | async; as users) {
+    <ul>
+      @for (user of users; track user.id) {
+        <li>
+          <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+        </li>
+      } @empty {
+        <li>No users.</li>
+      }
+    </ul>
+  }
+
+  <hr />
+
+  <h3>Search Users</h3>
+  <input [(ngModel)]="searchTerm" placeholder="Search by name or email" />
+  <button (click)="onSearch()">Search</button>
+
+  @if (searchResults$ | async; as results) {
+    <ul>
+      @for (user of results; track user.id) {
+        <li>
+          <strong>{{ user.name }}</strong> — {{ user.email }} ({{ user.role }})
+        </li>
+      } @empty {
+        <li>No results found.</li>
+      }
+    </ul>
+  }
+
+  <hr />
+
+  <section>
+    <h4>Add User</h4>
+    <input [(ngModel)]="newName" placeholder="Name" />
+    <input [(ngModel)]="newEmail" placeholder="Email" />
+    <input [(ngModel)]="newRole" placeholder="Role" />
+    <button (click)="onAdd()">Add</button>
+  </section>
+
+  <section>
+    <h4>Delete User</h4>
+    <input type="number" [(ngModel)]="deleteId" placeholder="User ID" />
+    <button (click)="onDelete()">Delete</button>
+  </section>
+
+  <section>
+    <h4>Update User</h4>
+    <input type="number" [(ngModel)]="updateId" placeholder="User ID" />
+    <input [(ngModel)]="updateName" placeholder="New name (optional)" />
+    <input [(ngModel)]="updateEmail" placeholder="New email (optional)" />
+    <input [(ngModel)]="updateRole" placeholder="New role (optional)" />
+    <button (click)="onUpdate()">Update</button>
+  </section>
+}

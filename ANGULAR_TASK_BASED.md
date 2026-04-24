@@ -527,18 +527,18 @@ For each question, create a small example in your app that demonstrates the conc
 
 ### Day 3 Checklist
 
-- [ ] Reactive form validation complete
-- [ ] Create user form working
-- [ ] Edit user form working
+- [x] Reactive form validation complete
+- [x] Create user form working
+- [x] Edit user form working
 - [x] AuthService created
-- [ ] AuthGuard protecting routes
-- [ ] RoleGuard for admin routes
-- [ ] Login/logout UI complete
+- [x] AuthGuard protecting routes
+- [x] RoleGuard for admin routes
+- [x] Login/logout UI complete
 
 ### Day 4 Checklist
 
-- [ ] StateService managing all app state
-- [ ] Loading and error states displaying
+- [x] StateService managing all app state
+- [x] Loading and error states displaying
 - [ ] OnPush change detection implemented
 - [ ] trackBy in \*ngFor lists
 - [ ] HTTP Interceptor for auth token

@@ -10,19 +10,24 @@ import { UserForm } from './user-form/user-form';
 import { Forbidden } from './forbidden/forbidden';
 import { authGuard } from './guards/auth.guard';
 import { roleGuard } from './guards/role.guard';
+import { StateUserList } from './state-user-list/state-user-list';
 
 export const routes: Routes = [
   // public routes
-  { path: '', component: Home },
+
   { path: 'auth', component: Auth },
   { path: 'forbidden', component: Forbidden },
 
   // 7E: protected by AuthGuard — must be logged in
+  { path: '', component: Home, canActivate: [authGuard] },
   { path: 'data-binding', component: DataBinding, canActivate: [authGuard] },
   { path: 'user-list', component: UserList, canActivate: [authGuard] },
   { path: 'user/:id', component: UserDetail, canActivate: [authGuard] },
   { path: 'behaviour-user-list', component: BehaviourUserList, canActivate: [authGuard] },
   { path: 'rxjs-operators', component: RxjsOperators, canActivate: [authGuard] },
+  { path: 'state-user-list', component: StateUserList, canActivate: [authGuard] },
+  // 9D: lazy loaded — bundle not fetched until user navigates here
+  { path: 'performance-demo', loadComponent: () => import('./performance-demo/performance-demo').then(m => m.PerformanceDemo), canActivate: [authGuard] },
 
   // 7E: protected by AuthGuard + RoleGuard — admin only
   { path: 'create-user', component: UserForm, canActivate: [authGuard, roleGuard] },
