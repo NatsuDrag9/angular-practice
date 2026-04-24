@@ -19,4 +19,12 @@
     padding: 10px 15px;
     height: 40px;
   }
+
+  &__form-field {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+  }
 }

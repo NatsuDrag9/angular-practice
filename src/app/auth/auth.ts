@@ -1,27 +1,32 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
 
+// 7D: login page — username/password form
 @Component({
   selector: 'auth',
+  imports: [FormsModule],
   templateUrl: './auth.html',
   styleUrl: './auth.scss',
 })
 export class Auth {
-  protected showAuthenticatedContent: boolean = false;
-  protected users: ReturnType<UserService['getUsers']> = [];
+  protected username = '';
+  protected password = '';
+  protected errorMessage: string | null = null;
 
-  constructor(private loginService: AuthService, private userService: UserService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
-  onLoginClick() {
-    this.loginService.login();
-    this.showAuthenticatedContent = this.loginService.getIsLoggedIn();
-    this.users = this.userService.getUsers();
-  }
-
-  onLogoutClick() {
-    this.loginService.logout();
-    this.showAuthenticatedContent = this.loginService.getIsLoggedIn();
-    this.users = [];
+  protected onLogin() {
+    const success = this.authService.login(this.username, this.password);
+    if (success) {
+      this.errorMessage = null;
+      this.router.navigate(['/user-list']);
+    } else {
+      this.errorMessage = 'Invalid username or password.';
+    }
   }
 }

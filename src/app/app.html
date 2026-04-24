@@ -1,3 +1,15 @@
-<!-- The main template file for your root component. This contains the basic HTML structure and <router-outlet> where other components render -->
+<!-- 7D: persistent header across all routes -->
+@if (currentUser$ | async; as user) {
+  <header style="display:flex; gap: 1rem; align-items: center; padding: 0.75rem 1rem; background: #f0f0f0; border-bottom: 1px solid #ccc;">
+    <span>Logged in as <strong>{{ user.name }}</strong> ({{ user.role }})</span>
+    <button (click)="onLogout()">Logout</button>
+    <a [routerLink]="['/']">Home</a>
+  </header>
+} @else {
+  <header style="display:flex; gap: 1rem; align-items: center; padding: 0.75rem 1rem; background: #f0f0f0; border-bottom: 1px solid #ccc;">
+    <span>Not logged in</span>
+    <a [routerLink]="['/auth']">Login</a>
+  </header>
+}
 
 <router-outlet />
